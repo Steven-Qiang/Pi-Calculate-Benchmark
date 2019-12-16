@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>圆周率测试</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="圆周率,圆周率计算,电脑性能测试,浏览器性能测试,在线计算圆周率">
+    <meta name="description" content="本工具可以测试浏览器/设备的性能。通过计算小数点后不同位数取的运算时间来比较浏览器/设备的性能">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">圆周率测试</a>
+            </div>
+            <div id="navbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="https://github.com/QiangMouRen/pi-test">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="page-header">
+            <h1>圆周率测试</h1>
+            <hr/>
+            <div class="row center-block">
+                <div class="lead">
+                    <table class="table table-bordered">
+                        <thead></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="checkbox" style="display: inline-block;">
+                <label class="unselectable">
+                    <input type="checkbox">
+                    是否输出计算结果并显示下载按钮（可能会卡死）
+                </label>
+            </div>
+            <button class="btn btn-info" style="display: inline-block;">自定义位数</button>
+            <button class="btn btn-primary" style="display: inline-block;">开始测试</button>
+        </div>
+        <h3>圆周率</h3>
+        <p>圆周率（Pi）是圆的周长与直径的比值，一般用希腊字母π表示，是一个在数学及物理学中普遍存在的数学常数</p>
+        <h3>圆周率测试</h3>
+        <p>测试浏览器/设备的性能。本工具计算圆周率小数点的位数，获取运算总耗时。JavaScript浮点很弱，能计算出来但可能不准确。计算用时仅供参考</p>
+    </div>
+    <footer class="footer">
+        <div>&copy;2019 QiangMouRen Corporation. All rights reserved.</div>
+    </footer>
+<script type="text/javascript" src="main.js"></script></body>
+
+</html>
