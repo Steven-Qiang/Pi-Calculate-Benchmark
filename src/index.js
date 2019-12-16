@@ -3,7 +3,7 @@
 * @Author: QiangMouRen 
 * @Date: 2019-12-16 18:19:05 
  * @Last Modified by: QiangMouRen
- * @Last Modified time: 2019-12-16 20:17:04
+ * @Last Modified time: 2019-12-16 21:45:28
 */
 
 import $ from "jquery";
@@ -33,6 +33,21 @@ import π from './pi';
         URL.revokeObjectURL(link.href);
     }
     /**
+     * @description 验证重复元素
+     * @param {Array} arr
+     */
+    const isRepeat = (arr) => {
+        var hash = {};
+        for (var i in arr) {
+            if (hash[arr[i]]) {
+                return true;
+            }
+            // 不存在该元素，则赋值为true，可以赋任意值，相应的修改if判断条件即可
+            hash[arr[i]] = true;
+        }
+        return false;
+    }
+    /**
      * @description 递进执行
      * @param {number} i
      */
@@ -52,18 +67,26 @@ import π from './pi';
         })
     }
     row.find("button:first").click(() => {
-        const old = ''
-        while (true) {
-            let _digits = prompt("请输入要计算的位数，逗号分割", (old != "") ? old : digits.toString());
+        let old_digits = '';
+        for (; ;) {
+            let _digits = prompt("请输入要计算的位数，逗号分割", (old_digits != "") ? old_digits : digits.toString());
             if (!_digits) return;
             if (!/^[\d,，]+$/.test(_digits)) {
                 if (confirm("只能输入数组和逗号，是否重新输入")) {
-                    old = _digits;
+                    old_digits = _digits;
                     continue;
-                } else return;
+                } else break;
             } else {
-                digits = _digits.split(/[,，]/);
-                return alert("设置完毕，请点击按钮开始")
+                digits = _digits.split(/[,，]/).sort();
+                if (isRepeat(digits)) {
+                    old_digits = _digits;
+                    alert("有重复内容");
+                    continue;
+                } else {
+                    alert("设置完毕，请点击按钮开始")
+                    break;
+                }
+
             }
         }
     })
