@@ -3,7 +3,7 @@
 * @Author: QiangMouRen 
 * @Date: 2019-12-16 18:19:05 
  * @Last Modified by: QiangMouRen
- * @Last Modified time: 2019-12-16 21:45:28
+ * @Last Modified time: 2019-12-16 22:10:18
 */
 
 import $ from "jquery";
@@ -51,13 +51,17 @@ import π from './pi';
      * @description 递进执行
      * @param {number} i
      */
-    const run = (i) => {
+    const run = async (i) => {
         const digit = digits[i]
         // 如果结束了
-        if (!digit) return row.css("visibility", "visible")
+        if (!digit) {
+            $(".text").toggle()
+            row.toggle()
+            // row.css("visibility", "visible")
+            return;
+        }
         // 调用计算函数 promise
         π(digit, true, turnπ).then((result) => {
-
             const parent = $(`span:contains("${digit}")`).eq(0).parents("tr");
             const td = parent.find("td:not(:eq(0))");
             td.eq(0).text(result.elapsed)
@@ -111,7 +115,10 @@ import π from './pi';
                 </tr>
             `);
         }
-        setTimeout(() => row.css("visibility", "hidden"), 0);
+        $(".text").show()
+        row.hide()
+        // row.css("visibility", "hidden")
+        
         // 开始第一个
         setTimeout(() => run(0), 500);
     });

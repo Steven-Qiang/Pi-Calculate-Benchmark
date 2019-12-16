@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="keywords" content="圆周率,圆周率计算,电脑性能测试,浏览器性能测试,在线计算圆周率">
     <meta name="description" content="本工具可以测试浏览器/设备的性能。通过计算小数点后不同位数取的运算时间来比较浏览器/设备的性能">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link crossorigin="anonymous" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" href="https://lib.baomitu.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand">圆周率测试</a>
             </div>
-            <div id="navbar">
+            <div>
                 <ul class="nav navbar-nav">
                     <li><a href="https://github.com/QiangMouRen/pi-test">GitHub</a></li>
                 </ul>
@@ -40,11 +40,15 @@
             <div class="checkbox" style="display: inline-block;">
                 <label class="unselectable">
                     <input type="checkbox">
-                    是否输出计算结果并显示下载按钮（可能会卡死）
+                    是否输出计算结果并显示下载按钮
                 </label>
             </div>
             <button class="btn btn-info" style="display: inline-block;">自定义位数</button>
             <button class="btn btn-primary" style="display: inline-block;">开始测试</button>
+        </div>
+        <div class="text" style="display: none;margin-left: 33px;">
+            <p>刚开始可能浏览器没什么事，到最后越来越多的时候页面会卡死，我已经使用promise/async处理，没有卵用</p>
+            <p>所以当浏览器弹出网页无响应的时候，<b>请点击等待</b>，不想继续等可以点击关闭</p>
         </div>
         <h3>圆周率</h3>
         <p>圆周率（Pi）是圆的周长与直径的比值，一般用希腊字母π表示，是一个在数学及物理学中普遍存在的数学常数</p>
