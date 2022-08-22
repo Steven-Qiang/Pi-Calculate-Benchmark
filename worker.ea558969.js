@@ -1,0 +1,1 @@
+(function(){"use strict";async function r(n,t){let s=1n,e=3n*10n**(BigInt(n)+20n),i=e;const a=performance.now();for(;e>0;)for(let o=0;o<100;++o)e=e*s/((s+1n)*4n),t&&(i+=e/(s+2n)),s+=2n;const c=performance.now()-a,l=t?(i/10n**20n).toString(10):null;return{digit:n,digits:l,spend:c}}self.onmessage=n=>{r(n.data.digit,n.data.outputResult).then(t=>{self.postMessage(t)})}})();
