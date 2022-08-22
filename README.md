@@ -6,5 +6,4 @@
 
 部署地址  [π(PI) Calculate and Benchmark](https://qiangmouren.github.io/pi-test)
 
-![](https://s3.bmp.ovh/imgs/2022/08/22/810e5a5ac9c16cb0.png)
-
+![](https://s3.bmp.ovh/imgs/2022/08/23/9555b1270c268cf7.png)

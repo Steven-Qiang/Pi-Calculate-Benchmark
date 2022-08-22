@@ -3,34 +3,45 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand">圆周率测试</a>
+          <a class="navbar-brand">圆周率计算 & 跑分</a>
         </div>
         <div>
           <ul class="nav navbar-nav">
-            <li><a href="https://github.com/qiangmouren/pi-test">GitHub</a></li>
+            <li>
+              <a href="https://github.com/qiangmouren/pi-test" target="_blank"
+                ><i class="glyphicon glyphicon-tag"></i> GithubProject</a
+              >
+            </li>
+            <li>
+              <a href="https://qiangmou.ren" target="_blank"> <i class="glyphicon glyphicon-home"></i> StevenQiang</a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
     <div class="container">
       <div class="page-header">
-        <h1>圆周率测试</h1>
-        <hr />
+        <h1>圆周率计算 & 跑分</h1>
+        <h4>
+          本工具可以在浏览器中计算圆周率小数点后的指定位数，并获得计算的总耗时。或许可以作为设备或浏览器的性能参考。
+        </h4>
         <div class="row center-block">
           <div class="lead">
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th width="20%">位数</th>
-                  <th width="10%">耗时</th>
-                  <th v-if="outputResult">结果</th>
+                  <th width="20%">计算位数</th>
+                  <th width="20%">计算耗时</th>
+                  <th v-if="outputResult">计算结果</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="item of result" :key="item.digit">
-                  <td>圆周率{{ item.digit }}位</td>
+                  <td>小数点后{{ item.digit }}位</td>
                   <td>{{ item.spend || '...' }}</td>
-                  <td v-if="outputResult" @click="download(item.digit)" title="点击下载">{{ item.digits }}</td>
+                  <td v-if="outputResult" @click="download(item.digit)" title="点击下载">
+                    {{ !item.result ? 'calculating...' : item.result }}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -60,17 +71,8 @@
       </div>
 
       <div style="display: flex; justify-content: center; margin-top: 20px">
-        <button class="btn btn-primary" @click="start" :disabled="running">开始测试</button>
+        <button class="btn btn-block" @click="start" :disabled="running">开始计算</button>
       </div>
-
-      <div class="text" style="display: none; margin-left: 33px">
-        <p>刚开始可能浏览器没什么事，到最后越来越多的时候页面会卡死，我已经使用promise/async处理，没有卵用</p>
-        <p>所以当浏览器弹出网页无响应的时候，<b>请点击等待</b>，不想继续等可以点击关闭</p>
-      </div>
-      <h3>圆周率</h3>
-      <p>圆周率（Pi）是圆的周长与直径的比值，一般用希腊字母π表示，是一个在数学及物理学中普遍存在的数学常数</p>
-      <h3>圆周率测试</h3>
-      <p>测试浏览器/设备的性能。本工具计算圆周率小数点的位数，获取运算总耗时。</p>
     </div>
   </div>
 </template>
@@ -105,8 +107,13 @@ export default {
         worker.onmessage = (msg) => {
           ret++;
           const item = this.result.find((x) => x.digit == e.digit);
-          item.spend = msg.data.spend;
-          if (msg.data.digits) item.digits = msg.data.digits;
+          const spend =
+            msg.data.spend < 1000 ? msg.data.spend.toFixed(2) + 'ms' : (msg.data.spend / 1000).toFixed(3) + 's';
+          if (!replay) item.spend = spend;
+          if (msg.data.digits) {
+            item.digits = msg.data.digits;
+            item.result = '[点击下载结果] 计算[结果] 耗时 [' + spend + ']';
+          }
           if (!replay && this.outputResult) {
             worker.postMessage({
               digit: item.digit,

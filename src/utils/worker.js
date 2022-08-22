@@ -12,7 +12,7 @@ async function run(digit, outputResult) {
   }
 
   const endTime = performance.now();
-  const spend = ((endTime - startTime) / 1000).toFixed(3) + ' s';
+  const spend = endTime - startTime;
   const digits = outputResult ? (pi / 10n ** 20n).toString(10) : null;
   return {
     digit,
