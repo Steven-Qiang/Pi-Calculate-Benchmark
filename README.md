@@ -4,6 +4,6 @@
 
 请使用现代浏览器访问网页测试，不兼容IE
 
-部署地址  [π(PI) Calculate and Benchmark](https://qiangmouren.github.io/Pi-Calculate-Benchmark/index.html)
+部署地址  [π(PI) Calculate and Benchmark](https://steven-qiang.github.io/Pi-Calculate-Benchmark/))
 
 ![](https://s3.bmp.ovh/imgs/2022/08/23/9555b1270c268cf7.png)
